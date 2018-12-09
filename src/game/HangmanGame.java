@@ -101,7 +101,7 @@ public class HangmanGame {
 			if (secret.indexOf(guess) >= 0)
 				found.add(guess);
 			else 
-				System.out.println(renderer.renderHangman(wrongGuess));
+				out.println(renderer.renderHangman(wrongGuess));
 		}
 		
 		if (isGameWon)
