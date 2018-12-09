@@ -11,28 +11,31 @@ object Disk {
 
   def loadAllResults(fileName: String) : Vector[(String, Int)] = {
     // from mutable to immutable
-    return loadAllResultsMutable(fileName).toVector
+    loadAllResultsMutable(fileName).toVector
   }
 
   private def loadAllResultsMutable(fileName: String) : ListBuffer[(String, Int)] = {
 
+    var scores = new ListBuffer[(String, Int)]()
     val file = new java.io.InputStreamReader(
       new java.io.FileInputStream(fileName),
       java.nio.charset.Charset.forName("UTF-8").newDecoder()
     )
     val scanner = new java.util.Scanner(file)
-    var scores = new ListBuffer[(String, Int)]()
 
-    while (scanner.hasNextLine()) {
-      val scoreLine = scanner.nextLine().split(';')
-      scores += new Tuple(scoreLine(0), scoreLine(1).toInt)
+    try {
+      while (scanner.hasNextLine) {
+        val scoreLine = scanner.nextLine().split(';')
+        scores += Tuple2(scoreLine(0).toString, scoreLine(1).toInt)
+      }
+    } finally {
+      scanner.close()
+      file.close()
     }
-    file.close()
-
-    return scores
+    scores
   }
 
-  def appendResult(fileName: String, playerName: String, points: Int) = {
+  def appendResult(fileName: String, playerName: String, points: Int) : Unit = {
     val file = new java.io.OutputStreamWriter(
       new java.io.FileOutputStream(fileName),
       java.nio.charset.Charset.forName("UTF-8").newEncoder()

@@ -11,24 +11,21 @@ public class WordsRepository {
 
 	private static final String REMOTE_LIST_URL = "http://runeberg.org/words/ord.niklas.frykholm";
 	private static final String REMOTE_LIST_CHARSET = "ISO-8859-1";
-	private static WordsRepository instance;
 	
 	private List<String> words;
 	
-	private WordsRepository() {
+	public WordsRepository() {
+		words = new ArrayList<>();
+	}
+
+	public void init() {
 		words = fetchRemote();
 	}
 	
 	public String randomWord() {
 		return words.get((int) (Math.random() * words.size()));
 	}
-	
-	public static WordsRepository getInstance() {
-		if(instance == null)
-			instance = new WordsRepository();
-		
-		return instance;
-	}
+
 	
 	private static List<String> fetchRemote() {
 		
