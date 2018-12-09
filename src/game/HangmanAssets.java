@@ -15,5 +15,5 @@ public class HangmanAssets {
             "============   RIP  :("
     };
 
-    public static int MAX_ATTEMPTS = FIGURE.length;
+    public static final int MAX_ATTEMPTS = FIGURE.length;
 }
