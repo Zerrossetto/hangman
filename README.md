@@ -8,6 +8,9 @@
 6. Your game should be written primarily in Java, but around 20% of the code rows should be in Scala according to the following guidelines:
 
     a. The main program shall be in Scala and main should be small, around 10 rows of code.
+
     b. Saving to a text file must be done using Scala, and text file-reading should be done with help of java.util.Scanner in Scala code (for the training you should use the JDK documentation of java.util.Scanner and not use scala.io.Source).
+
     c. You must collect all file management in a Scala single object with the name Disk.
+
     d. In any part of the Scala code of your application, use conversion methods- asScala and asJava after importscala.collection.JavaConverters._ for to convert between java.util.ArrayList and appropriate collections in Scala's standard library.
